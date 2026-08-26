@@ -82,8 +82,11 @@ app.post(
       const {
         accountNumber,
         pin
-      } = req.body;
-
+      } =  req.query;
+console.log("Authentication request:", {
+        accountNumber,
+        pinProvided: !!pin
+      });
       // 1. Validate input
       if (!accountNumber || !pin) {
 
