@@ -179,7 +179,7 @@ app.post(
 
       const {
         authToken
-      } = req.body;
+      } = req.query;
 
       // 1. Check token exists
       if (!authToken) {
