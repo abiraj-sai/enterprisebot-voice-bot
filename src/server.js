@@ -73,7 +73,7 @@ function generateTicketNumber() {
   return `CARD-${timestamp}-${random}`;
 }
 app.post(
-  "/tools/authenticate-customer",
+  "/tools/authenticate-customer/:accountNumber/:pin",
   validateApiKey,
   async (req, res) => {
 
@@ -82,8 +82,11 @@ app.post(
       const {
         accountNumber,
         pin
-      } = req.body;
-
+      } =  req.params;
+console.log("Authentication request:", {
+        accountNumber,
+        pinProvided: !!pin
+      });
       // 1. Validate input
       if (!accountNumber || !pin) {
 
@@ -179,7 +182,7 @@ app.post(
 
       const {
         authToken
-      } = req.body;
+      } = req.query;
 
       // 1. Check token exists
       if (!authToken) {
@@ -310,7 +313,7 @@ app.post(
         authToken,
         cardLast4,
         reason
-      } = req.body;
+      } = req.query;
 
       // 1. Check authentication token
       if (!authToken) {
@@ -543,7 +546,7 @@ app.post(
       const {
         authToken,
         ticketNumber
-      } = req.body;
+      } = req.query;
 
       // 1. Check authentication
       if (!authToken) {
@@ -789,7 +792,7 @@ app.post(
           "Unable to send confirmation email.",
 
         ticketNumber:
-          req.body.ticketNumber || null
+          req.query.ticketNumber || null
 
       });
 
