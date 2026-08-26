@@ -313,7 +313,7 @@ app.post(
         authToken,
         cardLast4,
         reason
-      } = req.body;
+      } = req.query;
 
       // 1. Check authentication token
       if (!authToken) {
@@ -546,7 +546,7 @@ app.post(
       const {
         authToken,
         ticketNumber
-      } = req.body;
+      } = req.query;
 
       // 1. Check authentication
       if (!authToken) {
@@ -792,7 +792,7 @@ app.post(
           "Unable to send confirmation email.",
 
         ticketNumber:
-          req.body.ticketNumber || null
+          req.query.ticketNumber || null
 
       });
 
