@@ -73,7 +73,7 @@ function generateTicketNumber() {
   return `CARD-${timestamp}-${random}`;
 }
 app.post(
-  "/tools/authenticate-customer/{accountNumber}/{pin}",
+  "/tools/authenticate-customer/:accountNumber/:pin",
   validateApiKey,
   async (req, res) => {
 
